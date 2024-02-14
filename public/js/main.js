@@ -13,6 +13,7 @@ $(function() {
     atualizaFrase();
     inicializarContadores();
     inicializarCronometro();
+    inicializarMarcadores();
     $("#btnReiniciar").click(reiniciaJogo);
     $("#btnReiniciar").attr("disabled", true);
 });
@@ -40,19 +41,45 @@ function inicializarContadores() {
 function inicializarCronometro() {
     let tempoRestante = $("#tempoDigitacao").text();
     campo.one("focus", function() { // O evento one executa a função apenas UMA vez
-    tempoDigitacao
+    
     // console.log(parseInt(tempoRestante));
     let cronometroId = setInterval(function(){
         tempoRestante--;
         // console.log(tempoRestante);
         $("#tempoDigitacao").text(tempoRestante);
         if(tempoRestante < 1) {
-            campo.attr("disabled", true); // O booleando atribui se for true e se for false ele reteira
             clearInterval(cronometroId); // Este método cancela um ação repetitiva pelosetInterval();
-            $("#btnReiniciar").attr("disabled", false);
+            finalizarJogo();
         }
     }, 1000);
 });
+}
+
+function finalizarJogo() {
+    campo.attr("disabled", true); // O booleando atribui se for true e se for false ele reteira
+    $("#btnReiniciar").attr("disabled", false);
+    campo.toggleClass("campo-disabilitado"); // Tanto o addClass que adiciona uma classe ao elemento quanto o removeClass que remove podem ser substituidos pelo toggleClass, assim evita utilizar outras nomenclaturas.
+    inserirPlacar();
+}
+
+function inicializarMarcadores() {
+    let fraseCampo = $(".frase").text();
+    campo.on("input", function() {
+        // console.log(fraseCampo);
+        let digitado = campo.val();
+        let comparavel = fraseCampo.substr(0, digitado.length);
+    
+        if(digitado === comparavel) {
+            campo.addClass("border-verde");
+            campo.removeClass("border-vermelho");
+        } else {
+            campo.addClass("border-vermelho");
+            campo.removeClass("border-verde");
+        }
+    
+        // console.log("Digitado: ", digitado);
+        // console.log("Comparavel: ", comparavel);
+    });
 }
 
 function reiniciaJogo() {
@@ -63,4 +90,7 @@ function reiniciaJogo() {
     $("#tempoDigitacao").text(tempoInicial);  
     inicializarCronometro(); 
     $("#btnReiniciar").attr("disabled", true);
+    campo.toggleClass("campo-disabilitado");
+    campo.removeClass("border-verde");
+    campo.removeClass("border-vermelho");
 }

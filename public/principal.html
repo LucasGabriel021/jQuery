@@ -4,22 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
+    <link rel="stylesheet" href="css/libs/materialize.min.css">
+    <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Alura Typer</h1>
-    <p class="frase">Teste do jogo</p>
-    <ul class="infos">
-        <li><span id="tamanhoFrase">30</span> palavras</li>
-        <li><span id="tempoDigitacao">5</span> segundos</li>
-    </ul>
-    <textarea name="campoDigitacao" id="campoDigitacao" cols="30" rows="10"></textarea>
-    <button id="btnReiniciar">Reiniciar jogo</button>
-    <ul>
-        <li><span id="contadorCaracteres">0</span> Caracteres</li>
-        <li><span id="contadorPalavras">0</span> Palavras</li>
-    </ul>
+    <div class="container">
+        <h1 class="center">Jogo das Palavras</h1>
+        <p class="frase center">Teste do jogo das palavras</p>
+        <ul class="infos center">
+            <li>
+                <i class="small material-icons icones">description</i>
+                <span id="tamanhoFrase">30</span> palavras
+            </li>
+            <li>
+                <i class="small material-icons icones">query_builder</i>
+                <span id="tempoDigitacao">5</span> segundos
+            </li>
+        </ul>
+        <textarea name="campoDigitacao" id="campoDigitacao" cols="30" rows="10"></textarea>
+        <div class="botoes">
+            <a id="btnReiniciar" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">restore</i></a>
+        </div>
+        <ul class="center">
+            <li><span id="contadorCaracteres">0</span> Caracteres</li>
+            <li><span id="contadorPalavras">0</span> Palavras</li>
+        </ul>
+
+        <section class="placar">
+            <h3 class="center">Placar</h3>
+            <table class="center bordered">
+                <thead>
+                    <tr>
+                        <th class="center">Nome</th>
+                        <th class="center">N° de palavras</th>
+                        <th class="center">Remover</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/placar.js"></script>
 </body>
 </html>
