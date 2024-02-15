@@ -1,3 +1,7 @@
+body {
+    overflow: scroll;
+}
+
 #campoDigitacao {
     font-size: 20px;
     height: 150px;
@@ -24,4 +28,21 @@
 
 .border-vermelho {
     border-color: #ff0000 !important;
+}
+
+.placar {
+    display: none;
+}
+
+#erro {
+    color: #ff0000;
+    display: none;
+}
+
+#spinner {
+    display: none;
+}
+
+#fraseId {
+    width: 33px;
 }

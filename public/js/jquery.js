@@ -6,6 +6,8 @@
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license

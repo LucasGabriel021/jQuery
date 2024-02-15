@@ -18,6 +18,11 @@ $(function() {
     $("#btnReiniciar").attr("disabled", true);
 });
 
+function atualizaTempoInicial(tempo) {
+    tempoInicial = tempo;
+    $("#tempoDigitacao").text(tempo);
+}
+
 function atualizaFrase() {
     let frase = $(".frase").text(); // método text pega apenas o texto.
     let qtdPalavras = frase.split(" ").length; // método split transforma um texto em array onde aceita no parâmetro um separador
@@ -39,9 +44,8 @@ function inicializarContadores() {
 }
 
 function inicializarCronometro() {
-    let tempoRestante = $("#tempoDigitacao").text();
     campo.one("focus", function() { // O evento one executa a função apenas UMA vez
-    
+    let tempoRestante = $("#tempoDigitacao").text();
     // console.log(parseInt(tempoRestante));
     let cronometroId = setInterval(function(){
         tempoRestante--;
@@ -63,8 +67,8 @@ function finalizarJogo() {
 }
 
 function inicializarMarcadores() {
-    let fraseCampo = $(".frase").text();
     campo.on("input", function() {
+        let fraseCampo = $(".frase").text();
         // console.log(fraseCampo);
         let digitado = campo.val();
         let comparavel = fraseCampo.substr(0, digitado.length);

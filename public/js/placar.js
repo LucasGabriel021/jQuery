@@ -1,3 +1,5 @@
+$("#btnPlacar").click(mostraPlacar);
+
 function inserirPlacar() {
     let corpoTabela = $(".placar").find("tbody"); // Método find vasculha a árvore de nós do elemento em busca de um elemento filho especificado.
     // console.log(corpoTabela);
@@ -8,6 +10,15 @@ function inserirPlacar() {
     novaLinha.find(".btn-remover").click(removeLinha);
 
     corpoTabela.append(novaLinha);
+    $(".placar").slideDown(500);
+    scrollPlacar();
+}
+
+function scrollPlacar() {
+    let posicaoPlacar = $(".placar").offset().top;
+    $("body").animate({
+        scrollTop: posicaoPlacar+"px"
+    }, 1000);
 }
 
 function criarNovaLinha(usuario, numPalavras) {
@@ -32,5 +43,13 @@ function criarNovaLinha(usuario, numPalavras) {
 function removeLinha() {
     // console.log("Botão funcionando!");
     event.preventDefault();
-    $(this).parent().parent().remove();
+    let linhaRemovida = $(this).parent().parent();
+    linhaRemovida.fadeOut(600);
+    setTimeout(function() {
+        linhaRemovida.remove();
+    }, 1000);
+}
+
+function mostraPlacar() {
+    $(".placar").stop().slideToggle(500);
 }
