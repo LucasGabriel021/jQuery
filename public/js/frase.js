@@ -45,7 +45,7 @@ function buscaFrase() {
 function trocarFrase(data) {
     console.log(data);
     let frase = $(".frase");
-    frase.text(data.body);
+    frase.text(data[0].body);
     atualizaFrase();
-    atualizaTempoInicial(data.id);
+    atualizaTempoInicial(data[0].id);
 }
