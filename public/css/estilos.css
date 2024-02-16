@@ -46,3 +46,7 @@ body {
 #fraseId {
     width: 33px;
 }
+
+#btnSync {
+    float: right;
+}

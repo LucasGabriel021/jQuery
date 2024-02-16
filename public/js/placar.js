@@ -1,4 +1,5 @@
 $("#btnPlacar").click(mostraPlacar);
+$("#btnSync").click(sincronizaPlacar);
 
 function inserirPlacar() {
     let corpoTabela = $(".placar").find("tbody"); // Método find vasculha a árvore de nós do elemento em busca de um elemento filho especificado.
@@ -35,7 +36,7 @@ function criarNovaLinha(usuario, numPalavras) {
     linha.append(colunaNumPalavras);
     linha.append(colunaRemover);
 
-    console.log(linha);
+    // console.log(linha);
 
     return linha;
 }
@@ -52,4 +53,48 @@ function removeLinha() {
 
 function mostraPlacar() {
     $(".placar").stop().slideToggle(500);
+}
+
+function sincronizaPlacar() {
+    let placar = [];
+    let linhas = $("tbody tr");
+
+    linhas.each(function(index, value) {
+        let usuario = $(this).find("td:nth-child(1)").text();
+        let palavras = $(this).find("td:nth-child(2)").text();
+
+        console.log(usuario);
+        console.log(palavras);
+
+        let score = {
+            userId: 1,
+            id: palavras,
+            title: usuario,
+            body: $(".frase").text()
+        }
+    
+        placar.push(score);
+    });
+    console.log(placar);
+
+    let dados = {
+        dados: placar
+    }
+
+    $.post("https://jsonplaceholder.typicode.com/posts", dados, function() {
+        console.log("Sincronizado!");
+    });
+}
+
+function atualizaPlacar() {
+    $.get("https://jsonplaceholder.typicode.com/posts", function(data) {
+        // console.log(data);
+
+        $(data).each(function() {
+            let linha = criarNovaLinha(this.body, this.id);
+            console.log(linha);
+            linha.find(".btn-remover").click(removeLinha);
+            $("tbody").append(linha);
+        })
+    });
 }

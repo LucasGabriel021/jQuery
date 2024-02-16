@@ -16,6 +16,7 @@ $(function() {
     inicializarMarcadores();
     $("#btnReiniciar").click(reiniciaJogo);
     $("#btnReiniciar").attr("disabled", true);
+    atualizaPlacar();
 });
 
 function atualizaTempoInicial(tempo) {
