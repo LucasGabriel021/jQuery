@@ -50,3 +50,9 @@ body {
 #btnSync {
     float: right;
 }
+
+#usuarios {
+    display: inline-block;
+    width: 150px;
+    vertical-align: middle;
+}

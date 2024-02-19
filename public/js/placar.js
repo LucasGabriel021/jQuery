@@ -4,7 +4,7 @@ $("#btnSync").click(sincronizaPlacar);
 function inserirPlacar() {
     let corpoTabela = $(".placar").find("tbody"); // Método find vasculha a árvore de nós do elemento em busca de um elemento filho especificado.
     // console.log(corpoTabela);
-    let usuario = "Lucas";
+    let usuario = $("#usuarios").val();
     let numPalavras = $("#contadorPalavras").text();
 
     let novaLinha = criarNovaLinha(usuario, numPalavras);
@@ -63,8 +63,8 @@ function sincronizaPlacar() {
         let usuario = $(this).find("td:nth-child(1)").text();
         let palavras = $(this).find("td:nth-child(2)").text();
 
-        console.log(usuario);
-        console.log(palavras);
+        // console.log(usuario);
+        // console.log(palavras);
 
         let score = {
             userId: 1,
@@ -75,7 +75,7 @@ function sincronizaPlacar() {
     
         placar.push(score);
     });
-    console.log(placar);
+    // console.log(placar);
 
     let dados = {
         dados: placar
@@ -83,6 +83,15 @@ function sincronizaPlacar() {
 
     $.post("https://jsonplaceholder.typicode.com/posts", dados, function() {
         console.log("Sincronizado!");
+        $(".tooltip").tooltipster("open");
+    })
+    .fail(function() {
+        $(".tooltip").tooltipster("open").tooltipster("content", "Falha ao sincronizar");
+    })
+    .always(function() {
+        setTimeout(function() {
+            $(".tooltip"),tooltipster("close");
+        }, 1200);
     });
 }
 
@@ -92,7 +101,7 @@ function atualizaPlacar() {
 
         $(data).each(function() {
             let linha = criarNovaLinha(this.body, this.id);
-            console.log(linha);
+            // console.log(linha);
             linha.find(".btn-remover").click(removeLinha);
             $("tbody").append(linha);
         })

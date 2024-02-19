@@ -17,6 +17,13 @@ $(function() {
     $("#btnReiniciar").click(reiniciaJogo);
     $("#btnReiniciar").attr("disabled", true);
     atualizaPlacar();
+    $("#usuarios").selectize({
+        create: true,
+        sortField: 'text'
+    });
+    $(".tooltip").tooltipster({
+        trigger: "custom"
+    });
 });
 
 function atualizaTempoInicial(tempo) {
